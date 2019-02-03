@@ -4,23 +4,19 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <div className="header d-flex">
-      <h3>
-        <a href="#">
-          Star Wars DB
-        </a>
-      </h3>
-      <ul className="d-flex">
-        <li>
-          <a href="#">People</a>
-        </li>
-        <li>
-          <a href="#">Planets</a>
-        </li>
-        <li>
-          <a href="#">Starships</a>
-        </li>
-      </ul>
+    <div className="header row d-flex justify-content-start">
+      <div className="col-lg-auto">
+        <h3><a href="#">Star Wars DB</a></h3>
+      </div>
+
+      <nav className="col-lg-4 align-self-end">
+        <ul className="d-flex justify-content-start">
+          <li><a href="#">People</a></li>
+          <li><a href="#">Planets</a></li>
+          <li><a href="#">Starships</a></li>
+        </ul>
+      </nav>
+
     </div>
   );
 };

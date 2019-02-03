@@ -5,7 +5,7 @@ import icon from './death-star.png';
 
 const ErrorIndicator = () => {
   return (
-    <div className="error-indicator">
+    <div className="error-indicator mt-4 mb-4">
       <img src={icon} alt="error icon" />
       <span className="boom">BOOM!</span>
       <span>
