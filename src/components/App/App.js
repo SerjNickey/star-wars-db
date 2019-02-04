@@ -7,7 +7,15 @@ import ErrorIndicator from '../ErrorIndicator';
 import ErrorButton from '../ErrorButton';
 import './App.css';
 
+import ItemList from '../ItemList';
+import PersonDetails from '../PersonDetails';
+
+import SwapiService from '../../services/SwapiService';
+
+
 export default class App extends Component {
+
+  swapiService = new SwapiService();
 
   state = {
     showRandomPlanet: true,
@@ -22,9 +30,7 @@ export default class App extends Component {
     });
   };
 
-  componentDidCatch(error, info) {
-    debugger;
-    console.log('componentDidCatch()');
+  componentDidCatch() {
     this.setState({ hasError: true });
   };
 
@@ -50,7 +56,8 @@ export default class App extends Component {
           </div>
         </div>
 
-        <PeoplePage />
+        <PeoplePage /> 
+
       </div>
     );
   }
