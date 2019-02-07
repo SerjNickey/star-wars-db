@@ -6,7 +6,11 @@ const StarshipDetails = (props) => {
   return (
     <ItemDetails {...props} >
       <Record field="model" label="Model: " />
+      <Record field="manufacturer" label="Manufacturer: " />
       <Record field="length" label="Length: " />
+      <Record field="crew" label="Crew: " />
+      <Record field="cargoCapacity" label="Cargo capacity: " />
+      <Record field="passengers" label="Passengers: " />
       <Record field="costInCredits" label="Cost: " />
     </ItemDetails>
   );

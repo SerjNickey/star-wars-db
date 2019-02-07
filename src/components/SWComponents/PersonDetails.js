@@ -6,6 +6,7 @@ const PersonDetails = (props) => {
   return (
     <ItemDetails {...props} >
       <Record field="gender" label="Gender: " />
+      <Record field="birthYear" label="Birth Year: " />
       <Record field="eyeColor" label="Eye Color: " />
     </ItemDetails>
   );

@@ -6,7 +6,7 @@ import Row from '../Row';
 export default class PlanetsPage extends Component {
 
   state = {
-    selectedItem: 2
+    selectedItem: null
   };
 
   onItemSelected = (selectedItem) => {
