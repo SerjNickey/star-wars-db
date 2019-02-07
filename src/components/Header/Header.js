@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ onServiceChange }) => {
@@ -11,13 +11,13 @@ const Header = ({ onServiceChange }) => {
 
       <nav className="col-lg-4 align-self-end">
         <ul className="d-flex justify-content-start">
-          <li><Link to="/people/">People</Link></li>
-          <li><Link to="/planets/">Planets</Link></li>
-          <li><Link to="/starships/">Starships</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/secret">Secret</Link></li>
+          <li><NavLink to="/people/">People</NavLink></li>
+          <li><NavLink to="/planets/">Planets</NavLink></li>
+          <li><NavLink to="/starships/">Starships</NavLink></li>
+          <li><NavLink to="/login">Login</NavLink></li>
+          <li><NavLink to="/secret">Secret</NavLink></li>
         </ul>
-      </nav>      
+      </nav>
     </div>
   );
 };

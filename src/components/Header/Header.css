@@ -16,6 +16,10 @@
   /*background-color: #444;*/
 }
 
+.header ul li a.active {
+  color: #00bc8c;
+}
+
 .header a {
   color: #c78f22;
   transition: color .2s ease;
