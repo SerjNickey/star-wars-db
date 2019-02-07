@@ -2,63 +2,40 @@ import React, { Component } from 'react';
 
 import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
-import PeoplePage from '../PeoplePage';
-import ErrorIndicator from '../ErrorIndicator';
-import ErrorButton from '../ErrorButton';
-import './App.css';
-
-import ItemList from '../ItemList';
-import PersonDetails from '../PersonDetails';
-
+import ErrorBoundry from '../ErrorBoundry';
 import SwapiService from '../../services/SwapiService';
+import DummySwapiService from '../../services/DummySwapiService';
+import { SwapiServiceProvider } from '../SwapiServiceContext';
+import { PeoplePage, PlanetsPage, StarshipsPage } from '../Pages';
+import './App.css';
 
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
+  state = { swapiService: new SwapiService() };
 
-  state = {
-    showRandomPlanet: true,
-    hasError: false
-  };
-
-  toggleRandomPlanet = () => {
-    this.setState((state) => {
-      return {
-        showRandomPlanet: !state.showRandomPlanet
-      }
+  onServiceChange = () => {
+    this.setState(({ swapiService }) => {
+      const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
+      console.log('Switched to ', Service.name);
+      return { swapiService: new Service() };
     });
   };
 
-  componentDidCatch() {
-    this.setState({ hasError: true });
-  };
-
   render() {
-    if(this.state.hasError) return <ErrorIndicator />;
-
-    const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
     return (
-      <div className="stardb-app container">
-        <Header />
-        { planet }
-
-        <div className="row ">
-          <div className="col-12 d-flex justify-content-start">
-            <button
-              className="toggle-planet btn btn-warning btn-lg mr-4"
-              onClick={this.toggleRandomPlanet}
-            >
-              Toggle Random Planet
-            </button>
-
+      <ErrorBoundry>
+        <SwapiServiceProvider value={this.state.swapiService}>
+          <div className="stardb-app container">
+            <Header onServiceChange={this.onServiceChange} />
+            <RandomPlanet />
+            <PeoplePage />
+            <PlanetsPage />
+            <StarshipsPage />
           </div>
-        </div>
-
-        <PeoplePage /> 
-
-      </div>
+        </SwapiServiceProvider>
+      </ErrorBoundry>
     );
   }
 }
