@@ -9,13 +9,8 @@ import { SwapiServiceProvider } from '../SwapiServiceContext';
 import {
   PeoplePage,
   PlanetsPage,
-  StarshipsPage,
-  LoginPage,
-  SecretPage } from '../Pages';
-
+  StarshipsPage } from '../Pages';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-
-import StarshipDetails from '../SWComponents/StarshipDetails';
 import './App.css';
 
 
@@ -40,9 +35,7 @@ export default class App extends Component {
     });
   };
 
-  render() {
-
-    const { isLoggedIn } = this.state;
+  render() {   
 
     return (
       <ErrorBoundry>
@@ -58,29 +51,10 @@ export default class App extends Component {
                        exact />
 
                 <Route path="/people/:id?" component={PeoplePage} />
-                <Route path="/planets" component={PlanetsPage} />
-                <Route path="/starships" component={StarshipsPage} exact />
-                <Route path="/starships/:id"
-                       render={({ match }) => {
-                         const { id } = match.params;
-                         return <StarshipDetails itemId={id} />
-                       }}/>
+                <Route path="/planets/:id?" component={PlanetsPage} />
+                <Route path="/starships/:id?" component={StarshipsPage}/>
 
-                <Route
-                  path="/login"
-                  render={() => (
-                    <LoginPage
-                      isLoggedIn={isLoggedIn}
-                      onLogin={this.onLogin} />
-                  )}/>
-
-                <Route
-                  path="/secret"
-                  render={() => (
-                    <SecretPage isLoggedIn={isLoggedIn} />
-                  )}/>
-
-                <Redirect to="/" /> 
+                <Redirect to="/" />
               </Switch>
             </div>
           </Router>
